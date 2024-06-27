@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   
+  </head>
+  <body>
+    <a href="{% url 'add_post.html %'}">Add post</a>
+    {% block content %}
+    <div class="container">
+      <h1>My Blog</h1>
+      <ul>
+        {% for post in object_list %}
+        <li>
+          <h2><a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a></h2>
+          <h5>- by {{ post.author}}</h5>
+          <div>
+            <p>{{ post.body|truncatechars:100 }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endblock %}
+  </body>
+</html>

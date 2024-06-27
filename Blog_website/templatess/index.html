@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    {% load static %}
+</head>
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        text-align: center;
+    }
+    table {
+        width: 50%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+{% load static %}
+<body>
+
+    <h1>Hello, World!</h1>
+    {% comment %} <form method="POST" action="">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <input type="submit" value="Submit"> {% endcomment %}
+        <div>{{peoples.name}}</div>
+        {% comment %} we got the peoples from the views file  {% endcomment %}
+
+
+        {% comment %} we will create a tbadle to show the data {% endcomment %}
+        <table>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Can vote</th>
+              
+            </tr>
+            
+            {% for  people in peoples %}
+              <tr>
+                {% comment %} <td>{{ people.name|lower }}</td> {% endcomment %}
+                <td>{{ people.name|upper }}</td>
+                <td>{{ people.age }}</td>
+                <td>
+                    {% if people.age >= 18 %}
+                    👍
+                    {% else %} 👎
+                    {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </table>
+    <p>{{text|truncatechars:100}}</p>
+    <p>
+        {%if 'Potato' in vegetables%}
+            Yes Available
+            {%elif "Tomato" in vegetables%}
+            Yes Available
+            {%else%}
+            No Available
+        {%endif%}
+    </p>
+    
+    
+</body>
+</html>
