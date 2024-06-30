@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <style>
+      .add_post {
+        color: white;
+        padding: 10px;
+        border: 1px solid;
+        text-decoration: none;
+        border-radius: 5px;
+        background-color: rgb(78, 154, 255);
+      }
+      .add_post:hover {
+        background-color: rgb(0, 110, 255);
+      }
+      button {
+        color: white;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 10px;
+        border: none;
+        background-color: rgb(83, 149, 255);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+      button:hover {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="{% url 'add_post' %}" class="add_post">Add post</a>
+    {% block content %}
+    <div class="container">
+      <h1>My Blog</h1>
+      <ul>
+        {% for post in object_list %}
+        <li>
+          <h2>
+            <a href="{% url 'article_detail' post.pk %}">{{ post.title }}</a>
+          </h2>
+          <h5>- by {{ post.author}}</h5>
+          <div>
+            <p class="para">{{ post.body|truncatechars:100 }}</p>
+          </div>
+          <form action="{% url 'delete_post' post.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">
+              <i
+                class="fa fa-trash-o"
+                style="
+                  font-size: 20px;
+                  color: rgb(255, 255, 255);
+                  padding-right: 10px;
+                "
+              ></i
+              >Delete
+            </button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endblock %}
+  </body>
+</html>

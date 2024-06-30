@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/add_post.css' %}">
+</head>
+{% load static %}
+<body>
+    <h1>Add Blog Posts</h1>
+    <form action="" method="post">
+        {% csrf_token %} 
+        {{ form.as_p }}
+        {% comment %}
+        In Django templates, {{ form.as_p }} is a shortcut for rendering the form fields with each field wrapped in a <p> tag. This is a quick way to render a form without needing to write the HTML for each form field manually.{% endcomment %}
+        <button>Post</button>
+    </form>
+</body>
+</html>
