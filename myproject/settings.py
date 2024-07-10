@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'rest_framework',
+    'corsheaders',
 ]
 #method 2 to add external apps 
 
@@ -46,7 +47,15 @@ EXTERNAL_APPS=[
     'home',  # Add this line
     'second',
     'blog_website',
-    'Authentication'
+    'Authentication',
+    'my_calender',
+    'polls',
+    'recipeapp',
+    'rest_api_app',
+    'CRUD',
+    'restapp2',
+    'jwt_auth',
+    
 ]
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -57,13 +66,39 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+]
+# settings.py
+
+CORS_ALLOW_ALL_ORIGINS = True
+# settings.py
+CORS_ALLOW_CREDENTIALS = True #set true inorder to make the frontedn get the cookies that we have set 
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://\w+\.example\.com$",
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+]
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 ROOT_URLCONF = 'myproject.urls'
+MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 TEMPLATES = [
     {
@@ -98,7 +133,6 @@ DATABASES = {
 		'PORT':'3306',
 	}
 }
-
 
 
 
