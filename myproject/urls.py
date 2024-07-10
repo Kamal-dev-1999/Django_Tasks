@@ -24,5 +24,13 @@ urlpatterns = [
     path('blog_website/', include('blog_website.urls')),
     path('Authentication/', include('Authentication.urls')),
     path('Authentication/',include('django.contrib.auth.urls')),
+    path('calender/',include('my_calender.urls')),
+    path('polling/',include('polls.urls')),
+    path('receipe/',include('recipeapp.urls')),
+    path('rest_app/',include('rest_api_app.urls')),
+    # path('api-auth/', include('rest_framework.urls'))
+    path('crud/',include('CRUD.urls')),
+    path('restapp/',include('restapp2.urls')),
+    path('jwt-auth/',include('jwt_auth.urls')),
     
 ]
